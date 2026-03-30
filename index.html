@@ -298,7 +298,7 @@
                             <p>E é exatamente isso que o <span className="font-black text-slate-900">Protocolo Maternidade</span> faz por você — te mostra o caminho exato, passo a passo, sem juridiquês, sem complicação, sem precisar pagar nada a mais por isso.</p>
                             <div className="mt-12 text-center">
                                 <button onClick={scrollToPrice} className="w-full md:w-auto bg-green-600 hover:bg-green-700 text-white font-black text-sm md:text-2xl py-6 md:py-8 px-10 md:px-16 rounded-[24px] md:rounded-[40px] shadow-2xl uppercase transition-transform hover:scale-105">
-                                    Quero Receber o Que É Meu — Acesso Imediato
+                                    QUERO RECEBER MEU ACESSO IMEDIATO
                                 </button>
                             </div>
                         </div>
@@ -359,7 +359,7 @@
                                 <p className="font-black text-lg md:text-2xl">— Mariana T., MEI, Belo Horizonte</p>
                             </div>
                             <button onClick={scrollToPrice} className="w-full bg-green-600 hover:bg-green-700 text-white font-black text-sm md:text-2xl py-6 md:py-8 px-10 rounded-[24px] shadow-2xl transition-transform hover:scale-105 uppercase">
-                                Quero o Protocolo Maternidade Agora — R$27,90
+                                QUERO RECEBER O PROTOLOCO MATERNIDADE AGORA!
                             </button>
                         </div>
                     </section>
@@ -409,24 +409,24 @@
                         </div>
                     </section>
 
-                    {/* BLOCO 7 — COMO FUNCIONA */}
-                    <section className="py-16 md:py-24 px-4 bg-red-600 text-white">
+                    {/* BLOCO 7 — COMO FUNCIONA - AJUSTE CLEAN */}
+                    <section className="py-16 md:py-24 px-4 bg-slate-50 border-y border-slate-200">
                         <div className="max-w-5xl mx-auto text-center">
-                            <h2 className="text-2xl md:text-5xl font-black mb-16 uppercase italic">Veja Como Funciona na Prática</h2>
+                            <h2 className="text-2xl md:text-5xl font-black mb-16 uppercase italic text-slate-900">Veja Como Funciona na Prática</h2>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-left">
                                 {[
                                     { step: "01", title: "Verifique Seus Direitos", desc: "Logo na primeira parte do Protocolo você faz uma verificação rápida da sua situação. MEI, CLT, autônoma, desempregada — o guia identifica seu perfil e já te mostra o caminho específico para o seu caso. Sem dúvida, sem achismo." },
                                     { step: "02", title: "Monte Seu Processo", desc: "Com o caminho definido, o Protocolo te guia documento por documento, formulário por formulário. Você vai saber exatamente o que juntar, como preencher e como protocolar — tudo explicado de forma simples, com exemplos reais." },
                                     { step: "03", title: "Protocole e Acompanhe", desc: "Com tudo pronto, você protocolará seu pedido diretamente pelo INSS — sem precisar sair de casa. E se em algum momento o INSS negar, o Protocolo ainda te mostra o que fazer para contestar e reverter a decisão." }
                                 ].map((s, i) => (
-                                    <div key={i} className="bg-white/10 backdrop-blur-sm p-10 rounded-[40px] border border-white/20 relative shadow-2xl">
-                                        <span className="absolute -top-5 left-8 bg-white text-red-600 font-black px-6 py-1.5 rounded-full text-xs shadow-xl uppercase">PASSO {s.step}</span>
-                                        <h3 className="text-2xl font-black mb-5 mt-4 uppercase italic tracking-tighter">{s.title}</h3>
-                                        <p className="text-red-50 text-base leading-relaxed">{s.desc}</p>
+                                    <div key={i} className="bg-white p-10 rounded-[40px] border border-slate-100 relative shadow-xl">
+                                        <span className="absolute -top-5 left-8 bg-red-600 text-white font-black px-6 py-1.5 rounded-full text-xs shadow-xl uppercase tracking-widest">PASSO {s.step}</span>
+                                        <h3 className="text-2xl font-black mb-5 mt-4 uppercase italic tracking-tighter text-slate-900">{s.title}</h3>
+                                        <p className="text-slate-600 text-base leading-relaxed">{s.desc}</p>
                                     </div>
                                 ))}
                             </div>
-                            <p className="mt-16 font-black text-xl md:text-3xl text-white italic uppercase max-w-3xl mx-auto leading-tight">O resultado: seu salário maternidade depositado na conta. O dinheiro que já era seu, finalmente nas suas mãos.</p>
+                            <p className="mt-16 font-black text-xl md:text-3xl text-red-600 italic uppercase max-w-3xl mx-auto leading-tight">O resultado: seu salário maternidade depositado na conta. O dinheiro que já era seu, finalmente nas suas mãos.</p>
                         </div>
                     </section>
 
@@ -526,34 +526,39 @@
                         </div>
                     </section>
 
-                    {/* BLOCO 11 — OFERTA IRRESISTÍVEL */}
-                    <section ref={priceRef} className="py-20 md:py-32 px-4 bg-slate-900 text-white relative overflow-hidden">
+                    {/* BLOCO 11 — OFERTA IRRESISTÍVEL - COMPACTAÇÃO MOBILE */}
+                    <section ref={priceRef} className="py-12 md:py-32 px-4 bg-slate-950 text-white relative overflow-hidden">
                         <div className="max-w-4xl mx-auto text-center relative z-10">
-                            <h2 className="text-3xl md:text-6xl font-black mb-16 uppercase italic tracking-tighter leading-tight">Garanta Seu Protocolo Maternidade Agora</h2>
-                            <div className="bg-white text-slate-900 rounded-[48px] md:rounded-[64px] p-8 md:p-20 mb-12 shadow-2xl border-x-[12px] border-red-600">
-                                <div className="bg-red-600 text-white px-10 py-3 rounded-full font-black text-sm md:text-xl uppercase mb-12 animate-pulse inline-block tracking-widest shadow-xl shadow-red-200">⚠️ Oferta Black Friday — Por tempo limitado</div>
-                                <div className="text-left space-y-5 mb-16 max-w-sm mx-auto font-medium text-base md:text-xl">
-                                    <div className="flex justify-between border-b-2 border-slate-50 pb-3"><span>📘 E-book Protocolo</span><span className="font-bold text-slate-400">R$97</span></div>
-                                    <div className="flex justify-between border-b-2 border-slate-50 pb-3"><span>📋 Checklist Bônus</span><span className="font-bold text-slate-400">R$37</span></div>
-                                    <div className="flex justify-between border-b-2 border-slate-50 pb-3"><span>📝 Modelo Contestação</span><span className="font-bold text-slate-400">R$67</span></div>
-                                    <div className="flex justify-between border-b-2 border-slate-50 pb-3"><span>📱 Guia Celular</span><span className="font-bold text-slate-400">R$27</span></div>
-                                    <div className="flex justify-between pt-8 font-black text-red-600 italic text-2xl"><span>Valor Total:</span><span className="line-through text-slate-300">R$228</span></div>
+                            <h2 className="text-2xl md:text-6xl font-black mb-10 uppercase italic tracking-tighter leading-tight">Garanta Seu Protocolo Maternidade Agora</h2>
+                            <div className="bg-white text-slate-900 rounded-[32px] md:rounded-[64px] p-6 md:p-20 mb-6 shadow-2xl border-x-[8px] md:border-x-[12px] border-red-600">
+                                <div className="bg-red-600 text-white px-8 py-2 rounded-full font-black text-xs md:text-xl uppercase mb-8 animate-pulse inline-block tracking-widest shadow-xl shadow-red-200">⚠️ Oferta Black Friday — Tempo Limitado</div>
+                                
+                                <div className="text-left space-y-3 mb-10 max-w-sm mx-auto font-medium text-sm md:text-xl">
+                                    <div className="flex justify-between border-b-2 border-slate-50 pb-2"><span>📘 E-book Protocolo</span><span className="font-bold text-slate-400">R$97</span></div>
+                                    <div className="flex justify-between border-b-2 border-slate-50 pb-2"><span>📋 Checklist Bônus</span><span className="font-bold text-slate-400">R$37</span></div>
+                                    <div className="flex justify-between border-b-2 border-slate-50 pb-2"><span>📝 Modelo Contestação</span><span className="font-bold text-slate-400">R$67</span></div>
+                                    <div className="flex justify-between border-b-2 border-slate-50 pb-2"><span>📱 Guia Celular</span><span className="font-bold text-slate-400">R$27</span></div>
+                                    <div className="flex justify-between pt-4 font-black text-red-600 italic text-xl md:text-2xl"><span>Valor Total:</span><span className="line-through text-slate-300">R$228</span></div>
                                 </div>
-                                <div className="mb-16">
-                                    <p className="text-slate-500 text-xl md:text-3xl font-bold uppercase tracking-widest mb-4">De R$97 por apenas</p>
-                                    <p className="text-7xl md:text-9xl font-black text-slate-950 my-6 tracking-tighter leading-none">R$27,90</p>
-                                    <p className="text-2xl md:text-4xl font-black text-red-600 uppercase italic tracking-wide">ou 3x de R$9,97 sem juros</p>
+
+                                <div className="mb-8">
+                                    <p className="text-slate-500 text-sm md:text-3xl font-bold uppercase tracking-widest mb-2">De R$97 por apenas</p>
+                                    <p className="text-6xl md:text-9xl font-black text-slate-950 my-4 tracking-tighter leading-none">R$27,90</p>
+                                    <p className="text-lg md:text-4xl font-black text-red-600 uppercase italic tracking-wide">ou 3x de R$9,97 sem juros</p>
                                 </div>
-                                <div className="space-y-6 text-center text-slate-600 text-sm md:text-lg mb-16 max-w-xl mx-auto leading-relaxed font-medium italic">
-                                    <p>O teto do Salário Maternidade subiu em 2025.</p>
+
+                                <div className="space-y-4 text-center text-slate-600 text-[11px] md:text-lg mb-8 max-w-xl mx-auto leading-relaxed font-medium italic border-t border-slate-100 pt-6">
+                                    <p>O teto do Salário Maternidade subiu em 2026.</p>
                                     <p>Seu filho está crescendo. O prazo de 5 anos não para. Cada dia que passa sem dar entrada é um dia a menos para buscar o dinheiro que já é seu.</p>
                                 </div>
-                                <a href="https://instagram.com/joaopedromktd" target="_blank" className="block w-full bg-green-600 hover:bg-green-700 text-white font-black text-lg md:text-3xl py-8 md:py-10 rounded-[32px] md:rounded-[48px] shadow-2xl uppercase transition-transform hover:scale-105 flex items-center justify-center text-center">
+
+                                <a href="https://instagram.com/joaopedromktd" target="_blank" className="block w-full bg-green-600 hover:bg-green-700 text-white font-black text-base md:text-3xl py-6 md:py-10 rounded-[24px] md:rounded-[48px] shadow-2xl uppercase transition-transform hover:scale-105 flex items-center justify-center text-center">
                                     QUERO O PROTOCOLO MATERNIDADE AGORA
                                 </a>
-                                <div className="flex flex-col md:flex-row items-center justify-center gap-8 mt-12 text-slate-400">
-                                    <div className="flex items-center gap-2"><Icon name="lock" className="w-5 h-5" /> <span className="text-xs font-black uppercase tracking-widest">Pagamento 100% seguro</span></div>
-                                    <div className="flex items-center gap-2"><Icon name="shieldCheck" className="w-5 h-5" /> <span className="text-xs font-black uppercase tracking-widest">Acesso imediato</span></div>
+
+                                <div className="flex items-center justify-center gap-4 mt-8 text-slate-400">
+                                    <div className="flex items-center gap-2"><Icon name="lock" className="w-4 h-4" /> <span className="text-[10px] md:text-xs font-black uppercase tracking-widest">Pagamento 100% seguro</span></div>
+                                    <div className="flex items-center gap-2"><Icon name="shieldCheck" className="w-4 h-4" /> <span className="text-[10px] md:text-xs font-black uppercase tracking-widest">Acesso imediato</span></div>
                                 </div>
                             </div>
                         </div>
@@ -562,7 +567,7 @@
                     {/* BLOCO 12 — GARANTIA + FAQ */}
                     <section className="py-20 md:py-32 px-4 bg-white border-t border-slate-100 text-center">
                         <div className="max-w-4xl mx-auto">
-                            <div className="bg-slate-50 p-10 md:p-20 rounded-[48px] md:rounded-[80px] mb-24 border border-slate-200">
+                            <div className="bg-slate-50 p-10 md:p-20 rounded-[48px] md:rounded-[80px] mb-24 border border-slate-200 shadow-sm">
                                 <div className="relative mb-10">
                                     <Icon name="shieldCheck" className="w-24 md:w-40 h-24 md:h-40 text-red-600 mx-auto" />
                                     <p className="text-red-600 font-black mt-4 text-2xl md:text-4xl uppercase italic tracking-widest">🛡️ 7 DIAS</p>
