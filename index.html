@@ -11,44 +11,36 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protocolo Maternidade - O INSS Te Deve Dinheiro</title>
+    <title>Protocolo Maternidade - Resultado</title>
     
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- React & ReactDOM CDN -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    
-    <!-- Babel para processar JSX no navegador -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; color: #1e293b; }
         .animate-spin { animation: spin 1s linear infinite; }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        
-        /* Smooth Scroll */
         html { scroll-behavior: smooth; }
         
-        /* Ajustes Mobile Específicos */
+        /* Animação sutil de pulso para botões */
+        @keyframes soft-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        .animate-soft-pulse { animation: soft-pulse 3s ease-in-out infinite; }
+
         @media (max-width: 640px) {
-            .mobile-fit-height {
-                min-height: 100dvh;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                padding: 1rem;
-            }
+            .mobile-fit-height { min-height: 100dvh; display: flex; flex-direction: column; justify-content: center; padding: 1rem; }
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
-    <!-- Google Tag Manager (noscript) -->
+<body class="bg-slate-50">
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KLQP4VXX"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
     <div id="root"></div>
 
@@ -57,62 +49,13 @@
 
         const Icon = ({ name, className = "w-6 h-6" }) => {
             const icons = {
-                arrowRight: (
-                    <>
-                        <path d="M5 12h14"/>
-                        <path d="m12 5 7 7-7 7"/>
-                    </>
-                ),
-                badgeCheck: (
-                    <>
-                        <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/>
-                        <path d="m9 12 2 2 4-4"/>
-                    </>
-                ),
-                lock: (
-                    <>
-                        <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                    </>
-                ),
-                shieldCheck: (
-                    <>
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/>
-                    </>
-                ),
-                star: (
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                ),
-                chevronDown: (
-                    <path d="m6 9 6 6 6-6"/>
-                ),
-                chevronUp: (
-                    <path d="m18 15-6-6-6 6"/>
-                ),
-                alertCircle: (
-                    <>
-                        <circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>
-                    </>
-                ),
-                fileText: (
-                    <>
-                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/>
-                    </>
-                ),
-                smartphone: (
-                    <>
-                        <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/>
-                    </>
-                ),
-                checkSquare: (
-                    <>
-                        <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-                    </>
-                ),
-                xCircle: (
-                    <>
-                        <circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>
-                    </>
-                )
+                arrowRight: <><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></>,
+                badgeCheck: <><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></>,
+                shieldCheck: <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></>,
+                star: <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>,
+                alertCircle: <><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></>,
+                chevronDown: <path d="m6 9 6 6 6-6"/>,
+                chevronUp: <path d="m18 15-6-6-6 6"/>
             };
             return (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -130,19 +73,15 @@
             const pushEvent = (eventName) => {
                 if (typeof window !== 'undefined') {
                     window.dataLayer = window.dataLayer || [];
-                    window.dataLayer.push({
-                        event: eventName,
-                        timestamp: new Date().getTime()
-                    });
+                    window.dataLayer.push({ event: eventName, timestamp: new Date().getTime() });
                 }
             };
 
-            const scrollToPrice = () => {
-                priceRef.current?.scrollIntoView({ behavior: 'smooth' });
-            };
+            const scrollToPrice = () => priceRef.current?.scrollIntoView({ behavior: 'smooth' });
 
             useEffect(() => {
-                if (step === 'sales') {
+                if (step === 'result') {
+                    pushEvent('analise concluida');
                     pushEvent('landingpage visit');
                 }
             }, [step]);
@@ -150,16 +89,16 @@
             const quizQuestions = [
                 { q: "Qual é a sua situação de trabalho atualmente?", options: ["Sou MEI (tenho CNPJ próprio)", "Trabalho como autônoma / freelancer", "Sou CLT (carteira assinada)", "Estou desempregada mas contribuí para o INSS", "Nunca contribuí para o INSS"] },
                 { q: "Qual é a situação do seu filho?", options: ["Estou grávida agora", "Meu filho tem menos de 1 ano", "Meu filho tem entre 1 e 3 anos", "Meu filho tem entre 3 e 5 anos"] },
-                { q: "Antes desse quiz, você sabia que tinha direito ao salário maternidade?", options: ["Não fazia ideia que existia esse benefício", "Sabia que existia mas achei que não me encaixava", "Sabia mas não sei como dar entrada", "Já tentei dar entrada mas o INSS negou"] },
-                { q: "O que mais te impede de buscar esse benefício?", options: ["Não tenho dinheiro para pagar um advogado", "Acho que é muito complicado e burocrático", "Tenho medo de o INSS negar", "Não sei quais documentos juntar", "Não sei nem por onde começar"] },
-                { q: "Você já tentou dar entrada no salário maternidade antes?", options: ["Nunca tentei, não sabia como", "Fui ao INSS pessoalmente e saí sem resposta", "Pesquisei no Google mas fiquei mais confusa", "O INSS negou e não soube o que fazer", "Um familiar tentou me ajudar mas não conseguiu"] },
-                { q: "Como está sua situação financeira agora?", options: ["Estou bem, mas esse dinheiro extra faria diferença", "Está apertada e esse valor resolveria muito", "Está muito difícil e preciso muito desse dinheiro", "Estou endividada e esse beneficio seria essencial"] },
-                { q: "Quanto tempo você teria para seguir um passo a passo e dar entrada no processo?", options: ["Menos de 1 hora por dia", "Entre 1 e 2 horas", "Tenho tempo disponível, quero resolver logo", "Quero algo que eu possa fazer no celular mesmo"] },
-                { q: "O que você quer fazer com o dinheiro do salário maternidade?", options: ["Quitar dívidas", "Investir nos meus filhos", "Montar uma reserva de emergência", "Pagar contas atrasadas", "Dar uma vida melhor para minha família"] },
-                { q: "Se você recebesse o salário maternidade hoje, qual seria a primeira coisa que faria?", options: ["Pagaria as contas que estão me tirando o sono", "Compraria algo que meu filho precisa", "Guardaria como reserva para o futuro"] },
-                { q: "Como você se sentiria sabendo que resolveu isso sozinha, sem pagar advogado?", options: ["Aliviada e orgulhosa", "Mais confiante para buscar outros direitos", "Finalmente no controle da minha situação", "Todas as opções acima"] },
-                { q: "Em quanto tempo você quer resolver isso?", options: ["Quero começar hoje mesmo", "Essa semana", "Esse mês", "Quando tiver mais tempo"] },
-                { q: "O que seria diferente na sua vida com esse dinheiro em mãos?", options: ["Teria menos estresse financeiro", "Meu filho teria mais do que precisa", "Me sentiria mais independente", "Conseguiria respirar e planejar o futuro"] }
+                { q: "Antes desse quiz, você sabia que tinha direito ao salário maternidade?", options: ["Não fazia ideia", "Sabia mas achei que não me encaixava", "Sabia mas não sei como dar entrada", "O INSS já negou"] },
+                { q: "O que mais te impede de buscar esse benefício?", options: ["Não tenho dinheiro para advogado", "Acho muito burocrático", "Medo de o INSS negar", "Não sei por onde começar"] },
+                { q: "Você já tentou dar entrada no benefício?", options: ["Nunca tentei", "Fui ao INSS e saí sem resposta", "O INSS negou", "Tentei mas me perdi nos documentos"] },
+                { q: "Como está sua situação financeira agora?", options: ["Apertada, esse valor ajudaria muito", "Muito difícil, preciso desse dinheiro", "Endividada, o benefício seria essencial"] },
+                { q: "Quanto tempo você teria para seguir o guia?", options: ["Menos de 1 hora por dia", "Quero resolver tudo hoje mesmo", "Quero fazer tudo pelo celular"] },
+                { q: "O que você faria com o dinheiro?", options: ["Quitar dívidas", "Investir nos meus filhos", "Reserva de emergência", "Pagar contas atrasadas"] },
+                { q: "Qual seria a primeira coisa que compraria?", options: ["Algo que meu filho precisa", "Pagaria contas que tiram o sono", "Guardaria para o futuro"] },
+                { q: "Como se sentiria resolvendo sozinha?", options: ["Aliviada e orgulhosa", "No controle da situação", "Mais confiante nos meus direitos"] },
+                { q: "Em quanto tempo quer resolver isso?", options: ["Hoje mesmo", "Essa semana", "O mais rápido possível"] },
+                { q: "O que seria diferente com esse dinheiro?", options: ["Menos estresse financeiro", "Meu filho teria o que precisa", "Respiraria aliviada"] }
             ];
 
             const handleQuizAnswer = () => {
@@ -173,31 +112,18 @@
                 }
             };
 
-            const handleFinalResultClick = () => {
-                pushEvent('analise concluida');
-                setStep('sales');
-                window.scrollTo({ top: 0 });
-            };
-
             if (step === 'start') {
                 return (
                     <div className="min-h-screen mobile-fit-height bg-slate-50 flex flex-col items-center justify-center p-4">
                         <div className="max-w-2xl w-full bg-white rounded-[40px] shadow-2xl overflow-hidden border border-slate-100 flex flex-col">
                             <div className="bg-red-600 p-6 md:p-8 text-center text-white">
-                                <h1 className="text-xl md:text-3xl font-black uppercase mb-4 leading-tight">
-                                    Descubra em 2 Minutos Se Você Tem Direito ao Salário Maternidade — e Quanto Pode Receber Ainda Este Ano
-                                </h1>
-                                <p className="text-red-100 text-sm md:text-lg">
-                                    Milhares de mães brasileiras deixam de receber esse dinheiro todo ano simplesmente por não saber que têm direito. Responda o teste rápido e descubra sua situação agora.
-                                </p>
+                                <h1 className="text-xl md:text-3xl font-black uppercase mb-4 leading-tight">Descubra em 2 Minutos Se Você Tem Direito ao Salário Maternidade — e Quanto Pode Receber Ainda Este Ano</h1>
+                                <p className="text-red-100 text-sm md:text-lg">Milhares de mães brasileiras deixam de receber esse dinheiro todo ano por não saber que têm direito.</p>
                             </div>
-                            <div className="p-6 md:p-12 text-center">
-                                <p className="text-slate-600 mb-6 text-sm md:text-lg font-medium">
-                                    Responda as próximas perguntas para descobrir se o INSS te deve dinheiro — e como receber sem precisar de advogado, sem complicação.
-                                </p>
-                                <p className="font-bold text-slate-800 mb-6 text-lg">Pronta para descobrir?</p>
-                                <button onClick={() => setStep('quiz')} className="w-full bg-green-600 hover:bg-green-700 text-white font-black py-4 md:py-6 rounded-2xl text-[11px] sm:text-sm md:text-xl shadow-xl transition-all transform hover:scale-105 uppercase whitespace-nowrap px-2">
-                                    QUERO SABER SE TENHO DIREITO
+                            <div className="p-6 md:p-12 text-center flex-1">
+                                <p className="text-slate-600 mb-6 text-sm md:text-lg font-medium">Responda o teste rápido e descubra sua situação agora. Sem advogado, sem complicação.</p>
+                                <button onClick={() => setStep('quiz')} className="animate-soft-pulse w-full bg-green-600 hover:bg-green-700 text-white font-black py-5 rounded-2xl text-[12px] sm:text-sm md:text-xl shadow-xl transition-all transform hover:scale-105 uppercase whitespace-nowrap">
+                                    QUERO RECEBER MEU ACESSO IMEDIATO
                                 </button>
                             </div>
                         </div>
@@ -208,19 +134,16 @@
             if (step === 'quiz') {
                 return (
                     <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 py-8">
-                        <div className="max-w-xl w-full bg-white rounded-3xl shadow-xl p-6 md:p-8 border border-slate-100 relative">
+                        <div className="max-w-xl w-full bg-white rounded-3xl shadow-xl p-6 md:p-8 border border-slate-100 relative text-slate-900">
                             <div className="flex justify-between items-center mb-6">
-                                <span className="text-xs font-black text-slate-400 uppercase tracking-widest font-bold">Pergunta {currentQuestion + 1} de {quizQuestions.length}</span>
-                                <div className="w-24 md:w-32 bg-slate-100 h-2 rounded-full overflow-hidden">
-                                    <div className="bg-red-600 h-full transition-all duration-500" style={{ width: `${((currentQuestion + 1) / quizQuestions.length) * 100}%` }}></div>
-                                </div>
+                                <span className="text-xs font-black text-slate-400 uppercase tracking-widest font-bold tracking-tighter">Pergunta {currentQuestion + 1} de {quizQuestions.length}</span>
+                                <div className="w-24 md:w-32 bg-slate-100 h-2 rounded-full overflow-hidden"><div className="bg-red-600 h-full transition-all duration-500" style={{ width: `${((currentQuestion + 1) / quizQuestions.length) * 100}%` }}></div></div>
                             </div>
-                            <h2 className="text-lg md:text-2xl font-black text-slate-800 mb-6 leading-tight">{quizQuestions[currentQuestion].q}</h2>
+                            <h2 className="text-lg md:text-2xl font-black mb-6 leading-tight">{quizQuestions[currentQuestion].q}</h2>
                             <div className="space-y-2 md:space-y-3">
                                 {quizQuestions[currentQuestion].options.map((opt, idx) => (
-                                    <button key={idx} onClick={handleQuizAnswer} className="w-full text-left p-4 md:p-5 rounded-xl border-2 border-slate-100 hover:border-red-500 hover:bg-red-50 transition-all text-slate-700 font-bold flex justify-between items-center group shadow-sm text-sm md:text-base">
-                                        {opt}
-                                        <Icon name="arrowRight" className="w-4 h-4 md:w-5 md:h-5 text-slate-300 group-hover:text-red-500 transform group-hover:translate-x-1 transition-transform" />
+                                    <button key={idx} onClick={handleQuizAnswer} className="w-full text-left p-4 md:p-5 rounded-xl border-2 border-slate-100 hover:border-red-500 hover:bg-red-50 transition-all font-bold flex justify-between items-center group shadow-sm text-sm md:text-base text-slate-700">
+                                        {opt}<Icon name="arrowRight" className="w-4 h-4 md:w-5 md:h-5 text-slate-300 group-hover:text-red-500 transform group-hover:translate-x-1 transition-transform" />
                                     </button>
                                 ))}
                             </div>
@@ -232,13 +155,13 @@
             if (step === 'analyzing') {
                 return (
                     <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4 text-center">
-                        <div className="w-full max-w-md bg-white p-12 rounded-[40px] shadow-2xl">
+                        <div className="w-full max-w-md bg-white p-12 rounded-[40px] shadow-2xl border border-slate-100 text-slate-900">
                             <div className="relative w-16 md:w-24 h-16 md:h-24 mb-8 mx-auto">
                                 <div className="absolute inset-0 border-4 border-slate-100 rounded-full"></div>
                                 <div className="absolute inset-0 border-4 border-red-600 rounded-full border-t-transparent animate-spin"></div>
                             </div>
-                            <h2 className="text-xl md:text-2xl font-black text-slate-800 mb-4 leading-tight">Cruzando seus dados com as regras do INSS...</h2>
-                            <p className="text-slate-500 animate-pulse text-sm">Aguarde, análise em tempo real.</p>
+                            <h2 className="text-xl md:text-2xl font-black mb-4 italic">Cruzando seus dados...</h2>
+                            <p className="text-slate-500 animate-pulse text-sm uppercase font-bold tracking-widest">Aguarde, análise em tempo real</p>
                         </div>
                     </div>
                 );
@@ -246,370 +169,165 @@
 
             if (step === 'result') {
                 return (
-                    <div className="min-h-screen mobile-fit-height bg-slate-50 flex flex-col items-center justify-center p-4 text-center">
-                        <div className="max-w-2xl w-full bg-white rounded-[32px] md:rounded-[40px] shadow-2xl p-6 md:p-10 border border-slate-100">
-                            <div className="bg-green-100 text-green-700 font-black px-4 py-1 rounded-full text-[10px] md:text-sm inline-block mb-4 uppercase tracking-widest">✅ ANÁLISE CONCLUÍDA.</div>
-                            <div className="space-y-4 text-left mb-6">
-                                <p className="text-lg md:text-xl font-bold text-slate-800 leading-tight">Com base nas suas respostas, identificamos que você muito provavelmente tem direito ao Salário Maternidade — e esse valor pode estar esperando por você há meses ou até anos.</p>
-                                <div className="bg-slate-50 p-4 rounded-2xl border-l-4 border-red-600">
-                                    <p className="mb-2 text-slate-700 font-medium text-xs md:text-base">O problema não é falta de direito.</p>
-                                    <p className="font-black text-slate-900 text-sm md:text-lg leading-tight">O problema é falta de um caminho claro para buscar o que já é seu.</p>
+                    <div className="min-h-screen bg-white">
+                        {/* 1. RESULTADO DA ANÁLISE */}
+                        <section className="bg-slate-50 py-10 px-4">
+                            <div className="max-w-2xl mx-auto bg-white rounded-[32px] md:rounded-[40px] shadow-2xl p-6 md:p-10 border border-slate-100 text-center">
+                                <div className="bg-green-100 text-green-700 font-black px-4 py-1.5 rounded-full text-[10px] md:text-sm inline-block mb-4 uppercase tracking-widest border border-green-200">✅ ANÁLISE CONCLUÍDA.</div>
+                                <div className="space-y-4 text-left mb-8">
+                                    <p className="text-lg md:text-xl font-bold leading-tight text-slate-900">Com base nas suas respostas, identificamos que você muito provavelmente tem direito ao Salário Maternidade — e esse valor pode estar esperando por você há meses ou até anos.</p>
+                                    <div className="bg-slate-50 p-4 rounded-2xl border-l-4 border-red-600">
+                                        <p className="mb-2 text-slate-700 font-medium text-xs md:text-base">O problema não é falta de direito.</p>
+                                        <p className="font-black text-slate-900 text-sm md:text-lg leading-tight uppercase italic tracking-tight">O problema é falta de um caminho claro para buscar o que já é seu.</p>
+                                    </div>
+                                    <p className="text-slate-600 leading-relaxed font-medium text-xs md:text-base">Criamos o <span className="font-black text-slate-900">Protocolo Maternidade</span> — um guia passo a passo direto do seu celular.</p>
                                 </div>
-                                <p className="text-slate-600 leading-relaxed font-medium text-xs md:text-base">É exatamente por isso que criamos o <span className="font-black text-slate-900">Protocolo Maternidade</span> — um guia passo a passo que mostra exatamente o que fazer. Sem advogado. Sem complicação. Direto do seu celular.</p>
-                                <div className="bg-red-50 p-3 rounded-xl flex gap-3 items-start">
-                                    <Icon name="alertCircle" className="text-red-600 w-4 h-4 shrink-0 mt-0.5" />
-                                    <p className="text-[10px] md:text-xs text-red-900 leading-tight font-medium">O prazo prescreve em 5 anos. Se seu filho tem menos de 5 anos, você ainda está a tempo.</p>
+                                <button onClick={scrollToPrice} className="animate-soft-pulse w-full bg-green-600 hover:bg-green-700 text-white font-black py-4 md:py-6 rounded-2xl text-[11px] sm:text-sm md:text-xl shadow-xl transition-all transform hover:scale-105 uppercase whitespace-nowrap">
+                                    QUERO RECEBER O PROTOCOLO MATERNIDADE AGORA!
+                                </button>
+                            </div>
+                        </section>
+
+                        {/* 2. 9 EM CADA 10 MÃES */}
+                        <section className="py-16 md:py-24 px-4 bg-white border-y border-slate-100 text-center">
+                            <div className="max-w-3xl mx-auto space-y-6">
+                                <h2 className="text-2xl md:text-4xl font-black text-slate-900 leading-tight uppercase italic">9 em cada 10 mães brasileiras que têm direito ao Salário Maternidade nunca receberam.</h2>
+                                <p className="text-lg md:text-xl text-slate-600 font-medium leading-relaxed">Não porque o INSS não paga. Mas porque o sistema foi feito para confundir. Esse dinheiro não some — ele fica parado esperando que a mãe saiba como buscar do jeito certo.</p>
+                                <div className="bg-slate-900 p-6 rounded-2xl text-left max-w-2xl mx-auto text-white border-l-8 border-red-600 shadow-xl">
+                                    <p className="font-bold text-sm md:text-lg leading-tight flex items-center gap-3">
+                                        <Icon name="alertCircle" className="text-red-500 shrink-0 w-8 h-8"/> 
+                                        O direito prescreve em 5 anos. Se seu filho tem menos de 5 anos, você ainda está a tempo de buscar o que é seu.
+                                    </p>
                                 </div>
                             </div>
-                            <button onClick={handleFinalResultClick} className="w-full bg-green-600 hover:bg-green-700 text-white font-black py-4 md:py-6 rounded-2xl text-[11px] sm:text-xs md:text-xl shadow-xl transition-all transform hover:scale-105 uppercase whitespace-nowrap px-1">
-                                QUERO O PROTOCOLO MATERNIDADE AGORA
-                            </button>
-                        </div>
+                        </section>
+
+                        {/* 3. VANTAGENS */}
+                        <section className="py-16 md:py-24 px-4 bg-slate-50">
+                            <div className="max-w-3xl mx-auto">
+                                <h2 className="text-2xl md:text-4xl font-black text-center mb-12 uppercase italic leading-tight text-slate-900">O Que Você Ganha Com o Protocolo Maternidade</h2>
+                                <div className="grid grid-cols-1 gap-3">
+                                    {[
+                                        "Descobre em minutos se você tem direito",
+                                        "Segue um caminho claro sem precisar de advogado",
+                                        "Economiza até R$3.000 em honorários",
+                                        "Sabe exatamente quais documentos juntar",
+                                        "Aprende o que fazer se o INSS negar",
+                                        "Resolve tudo em 2 horas, direto do celular",
+                                        "Garante que não vai perder o prazo de 5 anos"
+                                    ].map((v, i) => (
+                                        <div key={i} className="flex gap-4 items-center bg-white p-5 rounded-2xl border border-slate-200 shadow-sm transition-transform hover:translate-x-1">
+                                            <Icon name="badgeCheck" className="text-green-600 w-6 h-6 shrink-0" />
+                                            <span className="text-slate-700 font-bold text-sm md:text-lg uppercase tracking-tight">{v}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* 4. OFERTA COMPACTA E VISUAL */}
+                        <section ref={priceRef} className="py-12 md:py-32 px-4 bg-slate-950 text-white relative overflow-hidden">
+                            <div className="max-w-4xl mx-auto text-center relative z-10">
+                                <h2 className="text-2xl md:text-5xl font-black mb-8 uppercase italic tracking-tighter">Garanta Seu Protocolo Maternidade Agora</h2>
+                                <div className="bg-white text-slate-900 rounded-[32px] md:rounded-[64px] p-6 md:p-12 mb-6 shadow-2xl border-x-[12px] border-red-600">
+                                    <div className="bg-red-600 text-white px-8 py-2 rounded-full font-black text-[10px] md:text-xl uppercase mb-8 animate-pulse inline-block tracking-widest shadow-xl">⚠️ Oferta Black Friday — Tempo Limitado</div>
+                                    
+                                    <div className="text-left space-y-2 mb-8 max-w-sm mx-auto font-medium text-xs md:text-xl">
+                                        <div className="flex justify-between border-b border-slate-50 pb-1"><span>📘 E-book Protocolo</span><span className="font-bold text-slate-400 opacity-50">R$97</span></div>
+                                        <div className="flex justify-between border-b border-slate-50 pb-1"><span>📋 Checklist Bônus</span><span className="font-bold text-slate-400 opacity-50 text-sm">Grátis</span></div>
+                                        <div className="flex justify-between border-b border-slate-50 pb-1"><span>📝 Modelo Contestação</span><span className="font-bold text-slate-400 opacity-50 text-sm">Grátis</span></div>
+                                        <div className="flex justify-between border-b border-slate-50 pb-1"><span>📱 Guia Celular</span><span className="font-bold text-slate-400 opacity-50 text-sm">Grátis</span></div>
+                                        <div className="flex justify-between pt-4 font-black text-red-600 italic text-xl"><span>Valor Total:</span><span className="line-through text-slate-300 text-sm">R$228</span></div>
+                                    </div>
+
+                                    <div className="mb-6 leading-none">
+                                        <p className="text-slate-500 text-xs md:text-3xl font-bold uppercase tracking-widest mb-1">De R$97 por apenas</p>
+                                        <p className="text-6xl md:text-9xl font-black text-slate-950 my-2 tracking-tighter leading-none">R$27,90</p>
+                                        <p className="text-lg md:text-4xl font-black text-red-600 uppercase italic tracking-wide">ou 3x de R$9,97 sem juros</p>
+                                    </div>
+
+                                    <div className="space-y-4 text-center text-slate-600 text-[11px] md:text-lg mb-8 max-w-xl mx-auto leading-relaxed font-medium italic border-t border-slate-100 pt-6">
+                                        <p>O teto do Salário Maternidade subiu em 2026.</p>
+                                        <p>Seu filho está crescendo. O prazo de 5 anos não para. Busque o que já é seu.</p>
+                                    </div>
+
+                                    <a href="https://instagram.com/joaopedromktd" target="_blank" className="animate-soft-pulse block w-full bg-green-600 hover:bg-green-700 text-white font-black text-base md:text-3xl py-6 rounded-2xl md:rounded-[40px] shadow-2xl uppercase flex items-center justify-center text-center px-1 whitespace-nowrap">
+                                        QUERO RECEBER MEU ACESSO IMEDIATO
+                                    </a>
+
+                                    <div className="flex items-center justify-center gap-4 mt-8 text-slate-400">
+                                        <div className="flex items-center gap-2"><Icon name="lock" className="w-4 h-4" /> <span className="text-[10px] md:text-xs font-black uppercase tracking-widest">Pagamento 100% seguro</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* 5. GARANTIA */}
+                        <section className="py-20 md:py-32 px-4 bg-white border-t border-slate-100 text-center">
+                            <div className="max-w-4xl mx-auto">
+                                <div className="bg-slate-50 p-10 md:p-20 rounded-[48px] border border-slate-200">
+                                    <Icon name="shieldCheck" className="w-24 md:w-40 h-24 md:h-40 text-red-600 mx-auto mb-6" />
+                                    <h2 className="text-3xl md:text-5xl font-black text-slate-950 mb-8 uppercase italic leading-tight">Garantia Incondicional de 7 Dias</h2>
+                                    <p className="text-slate-700 text-lg md:text-2xl leading-relaxed font-medium italic max-w-2xl mx-auto">Você tem 7 dias completos para testar o Protocolo Maternidade. Se não gostar, devolvemos 100% do valor imediatamente.</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* 6. DEPOIMENTOS */}
+                        <section className="py-16 md:py-24 px-4 bg-slate-50 text-slate-900">
+                            <div className="max-w-4xl mx-auto">
+                                <h2 className="text-2xl md:text-4xl font-black text-center mb-16 uppercase italic text-slate-900">O que as mães estão falando:</h2>
+                                <div className="space-y-6">
+                                    {[
+                                        { text: "Meu filho tinha 4 anos e 8 meses quando comprei o Protocolo. Achei que tinha perdido o prazo. Recebi R$6.800. Chorei muito.", name: "Rosana F., diarista, Goiânia" },
+                                        { text: "O INSS sempre dava erro ou negava. Com o Protocolo entendi onde estava errando. Na quarta tentativa deu certo. R$9.100 na conta.", name: "Juliana C., autônoma, Porto Alegre" },
+                                        { text: "Sou MEI e todo mundo me dizia que eu não tinha direito. O Protocolo mostrou que eu tinha sim. Processo aprovado em 18 dias.", name: "Tatiana B., MEI, Curitiba" }
+                                    ].map((t, i) => (
+                                        <div key={i} className="bg-white p-8 rounded-[32px] border border-slate-100 shadow-lg flex flex-col md:flex-row gap-6 md:items-center">
+                                            <div className="shrink-0 flex gap-1">
+                                                {[...Array(5)].map((_, j) => <Icon key={j} name="star" className="w-5 h-5 text-amber-500 fill-amber-500" />)}
+                                            </div>
+                                            <div className="flex-1 text-left">
+                                                <p className="text-slate-700 text-base md:text-lg italic font-medium leading-relaxed">"{t.text}"</p>
+                                                <p className="text-slate-950 font-black text-xs uppercase tracking-widest mt-4">— {t.name}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* FAQ INTEGRADO */}
+                        <section className="py-24 px-4 bg-white border-t border-slate-100 text-center">
+                            <div className="max-w-3xl mx-auto">
+                                <h3 className="text-2xl md:text-4xl font-black text-slate-900 mb-12 uppercase italic leading-tight">Dúvidas Frequentes</h3>
+                                <div className="space-y-4 text-left">
+                                    {[
+                                        { q: "Funciona para MEI e desempregada?", a: "Sim. O Protocolo identifica seu perfil e te mostra o caminho específico para o seu caso." },
+                                        { q: "E se meu filho já tiver mais de 1 ano?", a: "Você tem até 5 anos após o nascimento para solicitar. Ainda está a tempo." },
+                                        { q: "O INSS já negou antes. Vale tentar?", a: "Sim. Ensinamos como contestar e aumentar as chances de reverter a decisão." }
+                                    ].map((faq, i) => (
+                                        <div key={i} className="border-2 border-slate-50 rounded-[28px] overflow-hidden">
+                                            <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full flex justify-between items-center p-8 text-left font-black text-slate-800 hover:bg-slate-50 transition-colors uppercase text-xs md:text-sm leading-tight">
+                                                {faq.q}
+                                                <Icon name={openFaq === i ? "chevronUp" : "chevronDown"} className="w-6 h-6 text-slate-400" />
+                                            </button>
+                                            {openFaq === i && <div className="p-8 pt-0 text-slate-600 border-t-2 border-slate-50 text-base md:text-xl font-medium leading-relaxed bg-white">{faq.a}</div>}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </section>
+
+                        <footer className="py-20 bg-slate-950 text-center text-slate-500 px-4">
+                            <p className="font-bold uppercase tracking-widest text-xs mb-6">© 2026 Protocolo Maternidade. Todos os direitos reservados.</p>
+                            <p className="text-[10px] max-w-2xl mx-auto uppercase leading-relaxed opacity-50 font-medium">Não somos afiliados ao INSS ou Governo Federal. Guia informativo baseado na legislação vigente.</p>
+                        </footer>
                     </div>
                 );
             }
 
-            return (
-                <div className="min-h-screen bg-white">
-                    {/* BLOCO 1 — HEADLINE */}
-                    <section className="bg-gradient-to-b from-red-700 to-red-800 text-white py-12 md:py-20 px-4">
-                        <div className="max-w-4xl mx-auto text-center">
-                            <span className="bg-red-500/30 text-red-100 px-4 py-1 rounded-full text-xs font-bold tracking-wider uppercase mb-6 inline-block">Atenção: Acesso Restrito</span>
-                            <h1 className="text-3xl md:text-6xl font-black mb-6 leading-tight uppercase tracking-tighter">O INSS Te Deve Dinheiro — E Você Nem Sabe</h1>
-                            <p className="text-base md:text-xl text-red-100 mb-10 max-w-3xl mx-auto font-medium">Descubra como receber o Salário Maternidade que é seu por direito, do zero ao depósito na conta, sem precisar de advogado, sem enfrentar fila e sem entender nada de lei — mesmo que o INSS já tenha negado antes.</p>
-                            
-                            <div className="bg-white p-6 md:p-10 rounded-[32px] border-4 border-red-500 inline-block text-left max-w-2xl shadow-2xl transform hover:scale-[1.02] transition-transform text-slate-900">
-                                <div className="flex items-start gap-4">
-                                    <div className="shrink-0 mt-1"><Icon name="badgeCheck" className="w-8 h-8 text-green-600" /></div>
-                                    <p className="text-base md:text-xl font-bold leading-relaxed">De acordo com as suas respostas no quiz… Identificamos que você se enquadra no perfil de mães que têm direito ao benefício e ainda estão dentro do prazo legal de 5 anos para solicitar. O que você vai ver agora foi preparado especialmente para a sua situação.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* BLOCO 2 — IDENTIFICAÇÃO */}
-                    <section className="py-16 md:py-24 px-4 bg-white">
-                        <div className="max-w-3xl mx-auto space-y-6 text-lg md:text-2xl text-slate-700 font-medium leading-relaxed">
-                            <p className="font-black text-2xl md:text-4xl text-slate-900 leading-tight">9 em cada 10 mães brasileiras que têm direito ao Salário Maternidade nunca receberam.</p>
-                            <p>Não porque o INSS não paga. Não porque é impossível. Mas porque ninguém ensinou o caminho certo.</p>
-                            <p>Talvez você tenha ido ao INSS e saído sem resposta. Talvez tenha pesquisado no Google e ficado mais confusa do que antes. Talvez achasse que por ser MEI, autônoma ou desempregada não tinha direito.</p>
-                            <p>Ou talvez simplesmente não soubesse que esse benefício existe — e que ele pode chegar a mais de <span className="text-red-600 font-black">R$9.000</span> dependendo do seu caso.</p>
-                            <p>A verdade é uma só: <span className="bg-yellow-200 px-2 text-slate-900 font-black">esse dinheiro já é seu.</span> Ele só precisa ser buscado do jeito certo.</p>
-                            <p>E é exatamente isso que o <span className="font-black text-slate-900">Protocolo Maternidade</span> faz por você — te mostra o caminho exato, passo a passo, sem juridiquês, sem complicação, sem precisar pagar nada a mais por isso.</p>
-                            <div className="mt-12 text-center">
-                                <button onClick={scrollToPrice} className="w-full md:w-auto bg-green-600 hover:bg-green-700 text-white font-black text-sm md:text-2xl py-6 md:py-8 px-10 md:px-16 rounded-[24px] md:rounded-[40px] shadow-2xl uppercase transition-transform hover:scale-105">
-                                    QUERO RECEBER MEU ACESSO IMEDIATO
-                                </button>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* BLOCO 3 — PROVAS */}
-                    <section className="py-16 md:py-24 px-4 bg-slate-50">
-                        <div className="max-w-5xl mx-auto">
-                            <h2 className="text-xl md:text-4xl font-black text-center mb-16 italic text-slate-800 uppercase leading-tight">Isso não é teoria. É o que acontece quando a mãe tem o caminho certo:</h2>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                                {[
-                                    { name: "Fernanda S.", role: "autônoma, São Paulo", initials: "FS", text: "Eu tinha desistido. Fui ao INSS duas vezes e não entendia nada do que me falavam. Segui o Protocolo Maternidade do zero e em menos de uma semana meu processo estava protocolado. Recebi R$7.200 que nem sabia que existiam." },
-                                    { name: "Camila R.", role: "MEI, Fortaleza", initials: "CR", text: "Minha filha já tinha 4 anos e eu achei que tinha perdido o prazo. Quando vi que ainda dava tempo, corri. O guia me mostrou exatamente o que fazer. Foi mais simples do que eu imaginava." },
-                                    { name: "Patrícia M.", role: "desempregada, Rio de Janeiro", initials: "PM", text: "O INSS tinha negado. Achei que era o fim. O Protocolo explica o que fazer exatamente nesse caso — contestei e recebi." }
-                                ].map((t, i) => (
-                                    <div key={i} className="bg-white p-8 rounded-[40px] shadow-xl border border-slate-100 flex flex-col justify-between">
-                                        <p className="text-slate-600 italic mb-10 leading-relaxed font-medium text-base">"{t.text}"</p>
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center font-black text-red-600 shadow-inner">{t.initials}</div>
-                                            <div>
-                                                <p className="font-black text-slate-800 uppercase text-sm">{t.name}</p>
-                                                <p className="text-[10px] text-slate-500 uppercase font-bold">{t.role}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="bg-red-50 p-8 rounded-[24px] border-l-8 border-red-600 max-w-3xl mx-auto shadow-sm">
-                                <p className="text-red-900 font-medium text-base md:text-xl leading-relaxed">
-                                    <span className="font-black block uppercase text-xs mb-2 tracking-widest">Dado importante:</span>
-                                    De acordo com o Ministério da Previdência Social, mais de R$2 bilhões em salário maternidade deixam de ser solicitados no Brasil todo ano. A principal razão: desinformação. Esse dinheiro não some. Ele fica parado — esperando que a mãe saiba como buscar.
-                                </p>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* BLOCO 4 — CHEGA DE PERDER */}
-                    <section className="py-16 md:py-24 px-4 bg-white text-center">
-                        <div className="max-w-3xl mx-auto">
-                            <h2 className="text-2xl md:text-5xl font-black text-slate-900 mb-12 uppercase italic leading-tight">Chega de Perder o Que É Seu Por Não Saber Como Pedir</h2>
-                            <div className="text-left space-y-4 md:space-y-6 mb-12">
-                                {[
-                                    "Chega de achar que precisa de advogado para receber um direito que já é seu",
-                                    "Chega de ir ao INSS e voltar pra casa sem resposta e sem dinheiro",
-                                    "Chega de ver outras mães recebendo enquanto você não sabe nem por onde começar",
-                                    "Chega de tener medo de que o INSS negue e você não saiba o que fazer",
-                                    "Chega de deixar esse dinheiro parado enquanto as contas não param de chegar"
-                                ].map((item, i) => (
-                                    <div key={i} className="flex gap-4 items-center bg-slate-50 p-5 rounded-2xl border border-slate-100">
-                                        <Icon name="badgeCheck" className="text-green-600 w-6 h-6 shrink-0" />
-                                        <span className="font-bold text-slate-700 text-sm md:text-xl">{item}</span>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="bg-slate-900 text-white p-10 rounded-[48px] mb-12 text-left relative overflow-hidden shadow-2xl">
-                                <p className="text-red-400 font-black mb-6 uppercase text-sm tracking-widest">Veja mais uma história real:</p>
-                                <p className="text-lg md:text-2xl italic mb-8 leading-relaxed font-light">"Sou MEI há 3 anos e sempre achei que não tinha direito. Uma amiga me mandou o Protocolo Maternidade. Segui tudo e em 30 dias o dinheiro estava na minha conta. Foram R$8.400 que mudaram completamente minha vida."</p>
-                                <p className="font-black text-lg md:text-2xl">— Mariana T., MEI, Belo Horizonte</p>
-                            </div>
-                            <button onClick={scrollToPrice} className="w-full bg-green-600 hover:bg-green-700 text-white font-black text-sm md:text-2xl py-6 md:py-8 px-10 rounded-[24px] shadow-2xl transition-transform hover:scale-105 uppercase">
-                                QUERO RECEBER O PROTOLOCO MATERNIDADE AGORA!
-                            </button>
-                        </div>
-                    </section>
-
-                    {/* BLOCO 5 — DIAGNÓSTICO */}
-                    <section className="py-16 md:py-24 px-4 bg-slate-950 text-white">
-                        <div className="max-w-4xl mx-auto">
-                            <h2 className="text-2xl md:text-5xl font-black text-center mb-16 uppercase italic leading-tight">Resultado da Sua Avaliação</h2>
-                            <p className="text-center text-slate-400 mb-12 text-lg">Suas respostas indicam que você não conseguiu receber o Salário Maternidade por causa de um ou mais desses problemas:</p>
-                            <div className="grid gap-6 text-left">
-                                {[
-                                    { title: "Problema 1 — Desinformação sobre o direito", desc: "A maioria das mães simplesmente não sabe que tem direito. MEI, autônoma, CLT, desempregada — cada situação tem um caminho diferente, e ninguém ensina isso de forma clara." },
-                                    { title: "Problema 2 — Medo da burocracia", desc: "Quando a mãe tenta pesquisar sozinha, encontra termos jurídicos, formulários complicados e processos que parecem impossíveis para quem não é advogada. Esse medo paralisa." },
-                                    { title: "Problema 3 — Falta de um caminho claro", desc: "Ir ao INSS sem saber o que pedir é como entrar num labirinto sem mapa. Sem a sequência certa de passos, documentos e formulários, o processo trava — e a mãe vai embora sem resultado." },
-                                    { title: "Problema 4 — O INSS negou e ela não soube contestar", desc: "Uma negativa do INSS não é o fim. É apenas uma etapa. Mas sem saber como contestar corretamente, a maioria das mães desiste exatamente quando estava mais perto de receber." },
-                                    { title: "Problema 5 — O prazo correndo sem ela saber", desc: "O direito ao salário maternidade prescreve em 5 anos após o nascimento do filho. Cada dia que passa sem dar entrada é um dia a menos para buscar o que é seu." }
-                                ].map((p, i) => (
-                                    <div key={i} className="bg-white/5 border border-white/10 p-8 rounded-[32px] hover:bg-white/10 transition-colors">
-                                        <h3 className="text-red-500 font-black mb-4 flex items-center gap-3 uppercase text-lg md:text-2xl italic">
-                                            <Icon name="xCircle" className="w-6 h-6 shrink-0" /> {p.title}
-                                        </h3>
-                                        <p className="text-slate-300 leading-relaxed text-base md:text-lg">{p.desc}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* BLOCO 6 — DOR & SOLUÇÃO */}
-                    <section className="py-20 md:py-32 px-4 bg-white text-center">
-                        <div className="max-w-4xl mx-auto">
-                            <h2 className="text-2xl md:text-5xl font-black mb-20 uppercase italic leading-tight text-slate-900">Resolva Tudo Isso de Uma Vez Com o Protocolo Maternidade</h2>
-                            <div className="space-y-16 text-left">
-                                {[
-                                    { q: "Sem saber por onde começar?", a: "O Protocolo Maternidade começa do absoluto zero. A primeira etapa é uma verificação simples que mostra se você tem direito — e já te coloca no caminho certo independente do seu tipo de vínculo empregatício." },
-                                    { q: "Com medo da burocracia?", a: "Cada passo do guia foi escrito em português simples, sem termos jurídicos, sem enrolação. Você vai saber exatamente o que fazer, em que ordem fazer e o que esperar em cada etapa — como se uma amiga especialista estivesse do seu lado." },
-                                    { q: "O INSS negou antes?", a: "Existe uma etapa específica no Protocolo para exatamente essa situação. Você vai saber como contestar a negativa de forma correta, quais documentos apresentar e como aumentar muito as chances de reverter a decisão." },
-                                    { q: "Sem tempo e sem dinheiro para advogado?", a: "O Protocolo foi desenhado para ser seguido em menos de 2 horas, do celular, sem sair de casa. E custa uma fração mínima do que qualquer advogado cobraria — sendo que o resultado pode ser o mesmo." },
-                                    { q: "Com o prazo correndo?", a: "Se o seu filho tem menos de 5 anos, você ainda está a tempo. Mas cada dia conta. O Protocolo te coloca em movimento hoje — não amanhã, não semana que vem. Hoje." }
-                                ].map((item, i) => (
-                                    <div key={i} className="flex flex-col md:flex-row gap-6 md:gap-12 border-b border-slate-100 pb-12 last:border-0">
-                                        <p className="text-red-600 font-black text-xl md:text-3xl uppercase italic md:w-1/3 leading-tight">{item.q}</p>
-                                        <p className="text-slate-700 text-base md:text-xl md:w-2/3 leading-relaxed font-medium">{item.a}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* BLOCO 7 — COMO FUNCIONA - AJUSTE CLEAN */}
-                    <section className="py-16 md:py-24 px-4 bg-slate-50 border-y border-slate-200">
-                        <div className="max-w-5xl mx-auto text-center">
-                            <h2 className="text-2xl md:text-5xl font-black mb-16 uppercase italic text-slate-900">Veja Como Funciona na Prática</h2>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-left">
-                                {[
-                                    { step: "01", title: "Verifique Seus Direitos", desc: "Logo na primeira parte do Protocolo você faz uma verificação rápida da sua situação. MEI, CLT, autônoma, desempregada — o guia identifica seu perfil e já te mostra o caminho específico para o seu caso. Sem dúvida, sem achismo." },
-                                    { step: "02", title: "Monte Seu Processo", desc: "Com o caminho definido, o Protocolo te guia documento por documento, formulário por formulário. Você vai saber exatamente o que juntar, como preencher e como protocolar — tudo explicado de forma simples, com exemplos reais." },
-                                    { step: "03", title: "Protocole e Acompanhe", desc: "Com tudo pronto, você protocolará seu pedido diretamente pelo INSS — sem precisar sair de casa. E se em algum momento o INSS negar, o Protocolo ainda te mostra o que fazer para contestar e reverter a decisão." }
-                                ].map((s, i) => (
-                                    <div key={i} className="bg-white p-10 rounded-[40px] border border-slate-100 relative shadow-xl">
-                                        <span className="absolute -top-5 left-8 bg-red-600 text-white font-black px-6 py-1.5 rounded-full text-xs shadow-xl uppercase tracking-widest">PASSO {s.step}</span>
-                                        <h3 className="text-2xl font-black mb-5 mt-4 uppercase italic tracking-tighter text-slate-900">{s.title}</h3>
-                                        <p className="text-slate-600 text-base leading-relaxed">{s.desc}</p>
-                                    </div>
-                                ))}
-                            </div>
-                            <p className="mt-16 font-black text-xl md:text-3xl text-red-600 italic uppercase max-w-3xl mx-auto leading-tight">O resultado: seu salário maternidade depositado na conta. O dinheiro que já era seu, finalmente nas suas mãos.</p>
-                        </div>
-                    </section>
-
-                    {/* BLOCO 8 — ENTREGÁVEIS */}
-                    <section className="py-20 md:py-32 px-4 bg-white text-center">
-                        <div className="max-w-4xl mx-auto">
-                            <h2 className="text-2xl md:text-5xl font-black mb-20 uppercase italic leading-tight">Tudo Que Você Recebe no Protocolo Maternidade</h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left mb-16">
-                                <div className="bg-slate-50 p-8 rounded-[32px] border border-slate-100 flex gap-6 items-start shadow-sm">
-                                    <div className="bg-red-600 p-4 rounded-2xl text-white shadow-lg shrink-0"><Icon name="fileText" className="w-8 h-8" /></div>
-                                    <div>
-                                        <h3 className="font-black text-xl mb-3 leading-tight uppercase italic">E-book Protocolo Maternidade — Guia Completo</h3>
-                                        <p className="text-slate-600 text-sm md:text-base leading-relaxed">O passo a passo completo do zero ao depósito: verificação de direitos, montagem do processo e protocolo no INSS. Escrito em linguagem simples, sem juridiquês.</p>
-                                    </div>
-                                </div>
-                                <div className="bg-slate-50 p-8 rounded-[32px] border border-slate-100 flex gap-6 items-start shadow-sm">
-                                    <div className="bg-red-600 p-4 rounded-2xl text-white shadow-lg shrink-0"><Icon name="checkSquare" className="w-8 h-8" /></div>
-                                    <div>
-                                        <h3 className="font-black text-xl mb-3 leading-tight uppercase italic">BÔNUS 1 — Checklist de Documentos</h3>
-                                        <p className="text-slate-600 text-sm md:text-base leading-relaxed italic">A lista exata de tudo que você precisa juntar antes de dar entrada — organizada por tipo de vínculo empregatício. Sem risco de esquecer nada.</p>
-                                        <p className="text-red-600 font-bold mt-4 uppercase text-xs italic tracking-widest underline">Valor: R$37 — Incluso gratuitamente</p>
-                                    </div>
-                                </div>
-                                <div className="bg-slate-50 p-8 rounded-[32px] border border-slate-100 flex gap-6 items-start shadow-sm">
-                                    <div className="bg-red-600 p-4 rounded-2xl text-white shadow-lg shrink-0"><Icon name="badgeCheck" className="w-8 h-8" /></div>
-                                    <div>
-                                        <h3 className="font-black text-xl mb-3 leading-tight uppercase italic">BÔNUS 2 — Modelo de Carta de Contestação</h3>
-                                        <p className="text-slate-600 text-sm md:text-base leading-relaxed italic">Se o INSS negar, você não vai ficar sem ação. Esse modelo já está pronto — você só preenche com seus dados e protocola.</p>
-                                        <p className="text-red-600 font-bold mt-4 uppercase text-xs italic tracking-widest underline">Valor: R$67 — Incluso gratuitamente</p>
-                                    </div>
-                                </div>
-                                <div className="bg-slate-50 p-8 rounded-[32px] border border-slate-100 flex gap-6 items-start shadow-sm">
-                                    <div className="bg-red-600 p-4 rounded-2xl text-white shadow-lg shrink-0"><Icon name="smartphone" className="w-8 h-8" /></div>
-                                    <div>
-                                        <h3 className="font-black text-xl mb-3 leading-tight uppercase italic">BÔNUS 3 — Guia de Acesso pelo Celular</h3>
-                                        <p className="text-slate-600 text-sm md:text-base leading-relaxed italic">Passo a passo visual de como acessar o sistema do INSS pelo celular, criar sua conta no Gov.br e acompanhar seu processo em tempo real.</p>
-                                        <p className="text-red-600 font-bold mt-4 uppercase text-xs italic tracking-widest underline">Valor: R$27 — Incluso gratuitamente</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="bg-slate-900 text-white p-10 rounded-[48px] max-w-sm mx-auto shadow-2xl border-4 border-red-600">
-                                <p className="text-slate-400 text-xl font-medium line-through mb-1">Valor Total: R$158</p>
-                                <p className="text-5xl font-black text-red-500 mb-2">R$27,90</p>
-                                <p className="text-xs uppercase font-black tracking-widest text-slate-500">Pagamento Único</p>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* BLOCO 9 — PROVAS SOCIAIS 2 */}
-                    <section className="py-20 px-4 bg-slate-50">
-                        <div className="max-w-4xl mx-auto">
-                            <h2 className="text-xl md:text-3xl font-black text-center mb-16 uppercase italic text-slate-800">O que as mães estão falando:</h2>
-                            <div className="space-y-6">
-                                {[
-                                    { text: "Meu filho tinha 4 anos e 8 meses quando comprei o Protocolo. Achei que tinha perdido o prazo. Segui tudo, protocolei e recebi R$6.800. Chorei muito. Esse dinheiro pagou as dívidas que eu carregava há dois anos.", name: "Rosana F., diarista, Goiânia" },
-                                    { text: "Tentei sozinha três vezes e o INSS sempre dava erro ou negava. Com o Protocolo entendi onde estava errando. Na quarta tentativa deu certo. R$9.100 na conta.", name: "Juliana C., autônoma, Porto Alegre" },
-                                    { text: "Não sabia nem o que era salário maternidade. Uma amiga me indicou. Comprei sem acreditar muito. Hoje tenho R$7.600 que não esperava. O guia é muito claro, qualquer pessoa consegue seguir.", name: "Débora M., desempregada, Recife" },
-                                    { text: "Sou MEI e todo mundo me dizia que eu não tinha direito. O Protocolo mostrou que eu tinha sim. Processo aprovado em 18 dias.", name: "Tatiana B., MEI, Curitiba" }
-                                ].map((t, i) => (
-                                    <div key={i} className="bg-white p-8 rounded-[32px] border border-slate-100 shadow-lg flex flex-col md:flex-row gap-6 md:items-center">
-                                        <div className="shrink-0 flex gap-1">
-                                            {[...Array(5)].map((_, j) => <Icon key={j} name="star" className="w-5 h-5 text-amber-500 fill-amber-500" />)}
-                                        </div>
-                                        <div className="flex-1 text-left">
-                                            <p className="text-slate-700 text-base md:text-lg italic font-medium leading-relaxed">"{t.text}"</p>
-                                            <p className="text-slate-950 font-black text-xs uppercase tracking-widest mt-4">— {t.name}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* BLOCO 10 — VANTAGENS */}
-                    <section className="py-20 px-4 bg-white text-center">
-                        <div className="max-w-3xl mx-auto">
-                            <h2 className="text-2xl md:text-4xl font-black mb-16 uppercase italic leading-tight">O Que Você Ganha Com o Protocolo Maternidade</h2>
-                            <div className="grid grid-cols-1 gap-4 text-left">
-                                {[
-                                    "Descobre em minutos se você tem direito — sem precisar ir ao INSS pessoalmente",
-                                    "Segue um caminho claro do zero, sem precisar entender nada de lei",
-                                    "Economiza de R$800 a R$3.000 que pagaria a um advogado pelo mesmo processo",
-                                    "Sabe exatamente quais documentos juntar sem risco de erro",
-                                    "Aprende o que fazer se o INSS negar — e aumenta muito as chances de reverter",
-                                    "Resolve tudo em menos de 2 horas, do celular, sem sair de casa",
-                                    "Pode receber entre R$4.000 e R$9.000 dependendo do seu caso",
-                                    "Garante que não vai perder o prazo de 5 anos e deixar o dinheiro prescrever",
-                                    "Tem um modelo pronto de contestação caso precise usar",
-                                    "Fica no controle da situação sem depender de ninguém para buscar o que é seu"
-                                ].map((v, i) => (
-                                    <div key={i} className="flex gap-4 items-center bg-green-50 p-5 rounded-[24px] border border-green-100 transition-transform hover:translate-x-2">
-                                        <Icon name="badgeCheck" className="text-green-600 w-6 h-6 shrink-0" />
-                                        <span className="text-slate-700 font-bold text-sm md:text-lg uppercase tracking-tight">{v}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* BLOCO 11 — OFERTA IRRESISTÍVEL - COMPACTAÇÃO MOBILE */}
-                    <section ref={priceRef} className="py-12 md:py-32 px-4 bg-slate-950 text-white relative overflow-hidden">
-                        <div className="max-w-4xl mx-auto text-center relative z-10">
-                            <h2 className="text-2xl md:text-6xl font-black mb-10 uppercase italic tracking-tighter leading-tight">Garanta Seu Protocolo Maternidade Agora</h2>
-                            <div className="bg-white text-slate-900 rounded-[32px] md:rounded-[64px] p-6 md:p-20 mb-6 shadow-2xl border-x-[8px] md:border-x-[12px] border-red-600">
-                                <div className="bg-red-600 text-white px-8 py-2 rounded-full font-black text-xs md:text-xl uppercase mb-8 animate-pulse inline-block tracking-widest shadow-xl shadow-red-200">⚠️ Oferta Black Friday — Tempo Limitado</div>
-                                
-                                <div className="text-left space-y-3 mb-10 max-w-sm mx-auto font-medium text-sm md:text-xl">
-                                    <div className="flex justify-between border-b-2 border-slate-50 pb-2"><span>📘 E-book Protocolo</span><span className="font-bold text-slate-400">R$97</span></div>
-                                    <div className="flex justify-between border-b-2 border-slate-50 pb-2"><span>📋 Checklist Bônus</span><span className="font-bold text-slate-400">R$37</span></div>
-                                    <div className="flex justify-between border-b-2 border-slate-50 pb-2"><span>📝 Modelo Contestação</span><span className="font-bold text-slate-400">R$67</span></div>
-                                    <div className="flex justify-between border-b-2 border-slate-50 pb-2"><span>📱 Guia Celular</span><span className="font-bold text-slate-400">R$27</span></div>
-                                    <div className="flex justify-between pt-4 font-black text-red-600 italic text-xl md:text-2xl"><span>Valor Total:</span><span className="line-through text-slate-300">R$228</span></div>
-                                </div>
-
-                                <div className="mb-8">
-                                    <p className="text-slate-500 text-sm md:text-3xl font-bold uppercase tracking-widest mb-2">De R$97 por apenas</p>
-                                    <p className="text-6xl md:text-9xl font-black text-slate-950 my-4 tracking-tighter leading-none">R$27,90</p>
-                                    <p className="text-lg md:text-4xl font-black text-red-600 uppercase italic tracking-wide">ou 3x de R$9,97 sem juros</p>
-                                </div>
-
-                                <div className="space-y-4 text-center text-slate-600 text-[11px] md:text-lg mb-8 max-w-xl mx-auto leading-relaxed font-medium italic border-t border-slate-100 pt-6">
-                                    <p>O teto do Salário Maternidade subiu em 2026.</p>
-                                    <p>Seu filho está crescendo. O prazo de 5 anos não para. Cada dia que passa sem dar entrada é um dia a menos para buscar o dinheiro que já é seu.</p>
-                                </div>
-
-                                <a href="https://instagram.com/joaopedromktd" target="_blank" className="block w-full bg-green-600 hover:bg-green-700 text-white font-black text-base md:text-3xl py-6 md:py-10 rounded-[24px] md:rounded-[48px] shadow-2xl uppercase transition-transform hover:scale-105 flex items-center justify-center text-center">
-                                    QUERO O PROTOCOLO MATERNIDADE AGORA
-                                </a>
-
-                                <div className="flex items-center justify-center gap-4 mt-8 text-slate-400">
-                                    <div className="flex items-center gap-2"><Icon name="lock" className="w-4 h-4" /> <span className="text-[10px] md:text-xs font-black uppercase tracking-widest">Pagamento 100% seguro</span></div>
-                                    <div className="flex items-center gap-2"><Icon name="shieldCheck" className="w-4 h-4" /> <span className="text-[10px] md:text-xs font-black uppercase tracking-widest">Acesso imediato</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* BLOCO 12 — GARANTIA + FAQ */}
-                    <section className="py-20 md:py-32 px-4 bg-white border-t border-slate-100 text-center">
-                        <div className="max-w-4xl mx-auto">
-                            <div className="bg-slate-50 p-10 md:p-20 rounded-[48px] md:rounded-[80px] mb-24 border border-slate-200 shadow-sm">
-                                <div className="relative mb-10">
-                                    <Icon name="shieldCheck" className="w-24 md:w-40 h-24 md:h-40 text-red-600 mx-auto" />
-                                    <p className="text-red-600 font-black mt-4 text-2xl md:text-4xl uppercase italic tracking-widest">🛡️ 7 DIAS</p>
-                                </div>
-                                <h2 className="text-3xl md:text-5xl font-black text-slate-950 mb-8 uppercase italic leading-tight">Satisfação Garantida ou Seu Dinheiro de Volta</h2>
-                                <div className="space-y-6 text-slate-700 text-lg md:text-2xl leading-relaxed font-medium italic">
-                                    <p>Você tem 7 dias completos para testar o Protocolo Maternidade.</p>
-                                    <p>Se por qualquer motivo achar que não era o que precisava — manda uma mensagem e devolvemos 100% do valor, sem perguntas, sem burocracia, na mesma hora.</p>
-                                    <p className="font-black text-slate-900 bg-red-50 p-4 inline-block not-italic border-l-8 border-red-600">A gente só pede uma coisa: que você tente. Porque a gente sabe o que o Protocolo faz quando a mãe segue os passos.</p>
-                                </div>
-                            </div>
-
-                            <h3 className="text-3xl md:text-5xl font-black text-slate-900 mb-16 uppercase italic leading-tight">
-                                <Icon name="alertCircle" className="text-red-600 w-12 h-12 inline-block mb-3" /><br />Dúvidas Frequentes
-                            </h3>
-                            <div className="space-y-6 text-left max-w-3xl mx-auto">
-                                {[
-                                    { q: "Funciona para MEI, autônoma e desempregada?", a: "Sim. O Protocolo foi criado exatamente para todas as situações — inclusive as que as pessoas acham que não têm direito. O guia identifica seu perfil e te mostra o caminho específico para o seu caso." },
-                                    { q: "E se meu filho já tiver mais de 1 ano?", a: "Você ainda pode ter direito. O prazo legal é de até 5 anos após o nascimento. Se seu filho tem menos de 5 anos, você ainda está a tempo de solicitar." },
-                                    { q: "O INSS já negou antes. Ainda vale tentar?", a: "Vale muito. Uma negativa não é definitiva. O Protocolo tem uma seção inteira dedicada a contestações — inclusive com um modelo de carta pronto para você usar." },
-                                    { q: "Preciso ir ao INSS pessoalmente?", a: "Não. Todo o processo pode ser feito online, pelo celular ou computador. O Guia de Acesso pelo Celular — incluso no pacote — te mostra exatamente como fazer isso." },
-                                    { q: "Quando recebo o acesso?", a: "Imediatamente após a confirmação do pagamento. Você recebe o link no e-mail cadastrado em menos de 1 minuto." },
-                                    { q: "Tem garantia?", a: "Sim. 7 dias de garantia incondicional. Se não gostar por qualquer motivo, devolvemos 100% do valor sem questionamento." }
-                                ].map((faq, i) => (
-                                    <div key={i} className="border-2 border-slate-50 rounded-[28px] overflow-hidden transition-all hover:border-red-100">
-                                        <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full flex justify-between items-center p-8 text-left font-black text-slate-800 hover:bg-slate-50 transition-colors uppercase text-sm md:text-lg leading-tight">
-                                            {faq.q}
-                                            <Icon name={openFaq === i ? "chevronUp" : "chevronDown"} className="w-6 h-6 text-slate-400" />
-                                        </button>
-                                        {openFaq === i && <div className="p-8 pt-0 text-slate-600 border-t-2 border-slate-50 text-base md:text-xl font-medium leading-relaxed bg-white">{faq.a}</div>}
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </section>
-
-                    <footer className="py-20 bg-slate-950 text-center text-slate-500 px-4 border-t border-white/5">
-                        <p className="font-bold uppercase tracking-widest text-xs mb-6">© 2025 Protocolo Maternidade. Todos os direitos reservados.</p>
-                        <p className="text-[10px] max-w-2xl mx-auto uppercase leading-relaxed opacity-50 font-medium tracking-wide">Não somos afiliados ao INSS ou Governo Federal. Este é um guia passo a passo informativo para auxiliar mães na busca por seus direitos previdenciários de forma autônoma e legal.</p>
-                    </footer>
-                </div>
-            );
+            return null; // Fallback
         };
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
