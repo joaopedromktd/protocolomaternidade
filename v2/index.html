@@ -128,8 +128,8 @@
             useEffect(() => {
                 if (step === 'result') {
                     // Dispara ambos os eventos quando o lead chega no resultado positivo
-                    pushEvent('analise concluida');
-                    pushEvent('landingpage visit');
+                    pushEvent('analiseconcluida');
+                    pushEvent('Landingpagevisit');
                 }
             }, [step]);
 
@@ -149,8 +149,8 @@
             ];
 
             const handleQuizAnswer = () => {
-                // Dispara o evento de página concluída
-                pushEvent(`Pagina ${currentQuestion + 1} concluida`);
+                // Dispara o evento de página concluída sem espaços
+                pushEvent(`pagina${currentQuestion + 1}concluida`);
                 
                 if (currentQuestion < quizQuestions.length - 1) {
                     setCurrentQuestion(currentQuestion + 1);
@@ -198,9 +198,10 @@
                                 </div>
                             </div>
                             <h2 className="text-lg md:text-2xl font-black text-slate-800 mb-6 leading-tight">{quizQuestions[currentQuestion].q}</h2>
-                            <div className="space-y-2 md:space-y-3">
+                            {/* A key={currentQuestion} garante que o container seja resetado visualmente a cada pergunta */}
+                            <div key={currentQuestion} className="space-y-2 md:space-y-3">
                                 {quizQuestions[currentQuestion].options.map((opt, idx) => (
-                                    <button key={idx} onClick={handleQuizAnswer} className="w-full text-left p-4 md:p-5 rounded-xl border-2 border-slate-100 hover:border-red-500 hover:bg-red-50 transition-all text-slate-700 font-bold flex justify-between items-center group shadow-sm text-sm md:text-base">
+                                    <button key={idx} onClick={handleQuizAnswer} className="w-full text-left p-4 md:p-5 rounded-xl border-2 border-slate-100 hover:border-red-500 hover:bg-red-50 transition-all text-slate-700 font-bold flex justify-between items-center group shadow-sm text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-red-500/20">
                                         {opt}
                                         <Icon name="arrowRight" className="w-4 h-4 md:w-5 md:h-5 text-slate-300 group-hover:text-red-500 transform group-hover:translate-x-1 transition-transform" />
                                     </button>
@@ -342,11 +343,11 @@
                                         { text: "O INSS sempre dava erro ou negava. Com o Protocolo entendi onde estava errando. Na quarta tentativa deu certo. R$9.100 na conta.", name: "Juliana C., autônoma, Porto Alegre" },
                                         { text: "Sou MEI e todo mundo me dizia que eu não tinha direito. O Protocolo mostrou que eu tinha sim. Processo aprovado em 18 dias.", name: "Tatiana B., MEI, Curitiba" }
                                     ].map((t, i) => (
-                                        <div key={i} className="bg-white p-8 rounded-[32px] border border-slate-100 shadow-lg flex flex-col md:flex-row gap-6 md:items-center">
+                                        <div key={i} className="bg-white p-8 rounded-[32px] border border-slate-100 shadow-lg flex flex-col md:flex-row gap-6 md:items-center text-left">
                                             <div className="shrink-0 flex gap-1">
                                                 {[...Array(5)].map((_, j) => <Icon key={j} name="star" className="w-5 h-5 text-amber-500 fill-amber-500" />)}
                                             </div>
-                                            <div className="flex-1 text-left">
+                                            <div className="flex-1">
                                                 <p className="text-slate-700 text-base md:text-lg italic font-medium leading-relaxed">"{t.text}"</p>
                                                 <p className="text-slate-950 font-black text-xs uppercase tracking-widest mt-4">— {t.name}</p>
                                             </div>
